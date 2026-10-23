@@ -1,0 +1,256 @@
+# JavaScript + TypeScript Interview Guide
+# हिंदी में: JavaScript इंटरव्यू की पूरी तैयारी — Basic से Advanced तक
+
+> **Target:** Frontend / Full-stack developer interviews at 3–5 year experience level
+> **Style:** English + Hindi, real-world examples, copy-paste code, tricky output questions
+
+---
+
+## 📁 Folder Structure
+
+| Folder | Topics | Count |
+|--------|--------|-------|
+| [01-basics/](01-basics/) | Variables, Types, Functions, Arrays, Objects | 01–34 |
+| [02-intermediate/](02-intermediate/) | Scope, Closures, this, Prototype, Classes | 35–69 |
+| [03-async/](03-async/) | Event Loop, Promises, async/await, Fetch | 70–90 |
+| [04-advanced/](04-advanced/) | Execution Context, Design Patterns, Performance | 91–135 |
+| [05-dom-browser/](05-dom-browser/) | DOM, Events, Browser APIs, Storage | 136–165 |
+| [06-interview-problems/](06-interview-problems/) | Coding problems with solutions | 166–200 |
+| [quick-revision/](quick-revision/) | Cheatsheets, Top 50 Q&A | — |
+
+---
+
+## ✅ Topic Checklist
+
+### 📁 01 — JavaScript Basics (01–34)
+- [ ] [01. What is JavaScript + How it Works](01-basics/01-what-is-javascript.md)
+- [ ] [02. How Browser Executes JavaScript](01-basics/02-how-browser-executes.md)
+- [ ] [03. Variables (var, let, const)](01-basics/03-variables.md)
+- [ ] [04. var vs let vs const — Differences](01-basics/04-var-let-const.md)
+- [ ] [05. Data Types](01-basics/05-data-types.md)
+- [ ] [06. Primitive vs Reference Types](01-basics/06-primitive-vs-reference.md)
+- [ ] [07. Type Conversion + Coercion](01-basics/07-type-conversion-coercion.md)
+- [ ] [08. Operators](01-basics/08-operators.md)
+- [ ] [09. == vs === (Loose vs Strict Equality)](01-basics/09-equality.md)
+- [ ] [10. Truthy vs Falsy Values](01-basics/10-truthy-falsy.md)
+- [ ] [11. if/else + switch Statement](01-basics/11-conditionals.md)
+- [ ] [12. Ternary Operator](01-basics/12-ternary.md)
+- [ ] [13. Loops (for, while, do-while, for-in, for-of)](01-basics/13-loops.md)
+- [ ] [14. break + continue](01-basics/14-break-continue.md)
+- [ ] [15. Functions — Declaration vs Expression](01-basics/15-functions.md)
+- [ ] [16. Arrow Functions](01-basics/16-arrow-functions.md)
+- [ ] [17. Default Parameters](01-basics/17-default-parameters.md)
+- [ ] [18. Rest Parameters (...args)](01-basics/18-rest-parameters.md)
+- [ ] [19. Spread Operator (...)](01-basics/19-spread-operator.md)
+- [ ] [20. Template Literals](01-basics/20-template-literals.md)
+- [ ] [21. Arrays — Basic Methods](01-basics/21-arrays-basics.md)
+- [ ] [22. Array Methods (map, filter, reduce, forEach, find)](01-basics/22-array-methods-1.md)
+- [ ] [23. Array Methods (some, every, flat, flatMap, includes)](01-basics/23-array-methods-2.md)
+- [ ] [24. Array Destructuring](01-basics/24-array-destructuring.md)
+- [ ] [25. Objects — Basics](01-basics/25-objects-basics.md)
+- [ ] [26. Object Methods (keys, values, entries, assign, freeze)](01-basics/26-object-methods.md)
+- [ ] [27. Object Destructuring](01-basics/27-object-destructuring.md)
+- [ ] [28. Shorthand + Computed Properties](01-basics/28-shorthand-computed.md)
+- [ ] [29. String Methods](01-basics/29-string-methods.md)
+- [ ] [30. Math Object + Methods](01-basics/30-math-object.md)
+- [ ] [31. Date Object](01-basics/31-date-object.md)
+- [ ] [32. JSON (parse, stringify)](01-basics/32-json.md)
+- [ ] [33. Error Handling (try, catch, finally, throw)](01-basics/33-error-handling.md)
+- [ ] [34. typeof + instanceof](01-basics/34-typeof-instanceof.md)
+
+### 📁 02 — Intermediate (35–69)
+- [ ] [35. Scope (Global, Function, Block)](02-intermediate/35-scope.md)
+- [ ] [36. Scope Chain](02-intermediate/36-scope-chain.md)
+- [ ] [37. Hoisting (var, let, const, function)](02-intermediate/37-hoisting.md)
+- [ ] [38. Temporal Dead Zone (TDZ)](02-intermediate/38-temporal-dead-zone.md)
+- [ ] [39. Closures — Complete Guide](02-intermediate/39-closures.md)
+- [ ] [40. Closure — Real World Use Cases](02-intermediate/40-closures-use-cases.md)
+- [ ] [41. IIFE](02-intermediate/41-iife.md)
+- [ ] [42. this Keyword — Complete Guide](02-intermediate/42-this-keyword.md)
+- [ ] [43. this in Arrow vs Regular Function](02-intermediate/43-this-arrow-vs-regular.md)
+- [ ] [44. call, apply, bind](02-intermediate/44-call-apply-bind.md)
+- [ ] [45. Prototype + Prototype Chain](02-intermediate/45-prototype.md)
+- [ ] [46. Prototypal Inheritance](02-intermediate/46-prototypal-inheritance.md)
+- [ ] [47. Class Syntax (ES6)](02-intermediate/47-classes.md)
+- [ ] [48. Constructor Function](02-intermediate/48-constructor-function.md)
+- [ ] [49. new Keyword — How it Works](02-intermediate/49-new-keyword.md)
+- [ ] [50. Inheritance with Classes (extends, super)](02-intermediate/50-class-inheritance.md)
+- [ ] [51. Static Methods + Properties](02-intermediate/51-static.md)
+- [ ] [52. Getters + Setters](02-intermediate/52-getters-setters.md)
+- [ ] [53. Symbols](02-intermediate/53-symbols.md)
+- [ ] [54. Iterators + Iterables](02-intermediate/54-iterators.md)
+- [ ] [55. Generators (function*)](02-intermediate/55-generators.md)
+- [ ] [56. Map + Set](02-intermediate/56-map-set.md)
+- [ ] [57. WeakMap + WeakSet](02-intermediate/57-weakmap-weakset.md)
+- [ ] [58. Optional Chaining (?.)](02-intermediate/58-optional-chaining.md)
+- [ ] [59. Nullish Coalescing (??)](02-intermediate/59-nullish-coalescing.md)
+- [ ] [60. Logical Assignment Operators](02-intermediate/60-logical-assignment.md)
+- [ ] [61. Short Circuit Evaluation](02-intermediate/61-short-circuit.md)
+- [ ] [62. Garbage Collection](02-intermediate/62-garbage-collection.md)
+- [ ] [63. Memory Leaks — How to Avoid](02-intermediate/63-memory-leaks.md)
+- [ ] [64. Memoization](02-intermediate/64-memoization.md)
+- [ ] [65. Currying](02-intermediate/65-currying.md)
+- [ ] [66. Composition vs Inheritance](02-intermediate/66-composition-vs-inheritance.md)
+- [ ] [67. Pure Functions](02-intermediate/67-pure-functions.md)
+- [ ] [68. Side Effects](02-intermediate/68-side-effects.md)
+- [ ] [69. Immutability](02-intermediate/69-immutability.md)
+
+### 📁 03 — Asynchronous JavaScript (70–90)
+- [ ] [70. Synchronous vs Asynchronous](03-async/70-sync-vs-async.md)
+- [ ] [71. Call Stack](03-async/71-call-stack.md)
+- [ ] [72. Web APIs](03-async/72-web-apis.md)
+- [ ] [73. Callback Queue (Task Queue)](03-async/73-callback-queue.md)
+- [ ] [74. Event Loop — Complete Guide](03-async/74-event-loop.md)
+- [ ] [75. Microtask Queue vs Macrotask Queue](03-async/75-microtask-macrotask.md)
+- [ ] [76. setTimeout + setInterval](03-async/76-settimeout-setinterval.md)
+- [ ] [77. Callbacks](03-async/77-callbacks.md)
+- [ ] [78. Callback Hell](03-async/78-callback-hell.md)
+- [ ] [79. Promises — Complete Guide](03-async/79-promises.md)
+- [ ] [80. Promise States](03-async/80-promise-states.md)
+- [ ] [81. Promise Chaining](03-async/81-promise-chaining.md)
+- [ ] [82. Promise Methods (all, allSettled, race, any)](03-async/82-promise-methods.md)
+- [ ] [83. async/await — Complete Guide](03-async/83-async-await.md)
+- [ ] [84. Error Handling in async/await](03-async/84-async-error-handling.md)
+- [ ] [85. Fetch API](03-async/85-fetch-api.md)
+- [ ] [86. XMLHttpRequest (legacy)](03-async/86-xmlhttprequest.md)
+- [ ] [87. AJAX](03-async/87-ajax.md)
+- [ ] [88. AbortController](03-async/88-abort-controller.md)
+- [ ] [89. Async Generators](03-async/89-async-generators.md)
+- [ ] [90. Concurrency vs Parallelism](03-async/90-concurrency-parallelism.md)
+
+### 📁 04 — Advanced JavaScript (91–135)
+- [ ] [91. Execution Context](04-advanced/91-execution-context.md)
+- [ ] [92. Creation Phase vs Execution Phase](04-advanced/92-creation-execution-phase.md)
+- [ ] [93. Variable + Lexical Environment](04-advanced/93-variable-lexical-environment.md)
+- [ ] [94. Closure + Execution Context Together](04-advanced/94-closure-execution-context.md)
+- [ ] [95. Functional Programming in JS](04-advanced/95-functional-programming.md)
+- [ ] [96. Higher Order Functions](04-advanced/96-higher-order-functions.md)
+- [ ] [97. Function Composition](04-advanced/97-function-composition.md)
+- [ ] [98. Partial Application](04-advanced/98-partial-application.md)
+- [ ] [99. Lazy Evaluation](04-advanced/99-lazy-evaluation.md)
+- [ ] [100. Design Patterns in JavaScript](04-advanced/100-design-patterns.md)
+- [ ] [101. Module Pattern](04-advanced/101-module-pattern.md)
+- [ ] [102. Observer Pattern](04-advanced/102-observer-pattern.md)
+- [ ] [103. Factory Pattern](04-advanced/103-factory-pattern.md)
+- [ ] [104. Singleton Pattern](04-advanced/104-singleton-pattern.md)
+- [ ] [105. ES Modules (import/export)](04-advanced/105-es-modules.md)
+- [ ] [106. CommonJS (require/module.exports)](04-advanced/106-commonjs.md)
+- [ ] [107. ES Modules vs CommonJS](04-advanced/107-esm-vs-cjs.md)
+- [ ] [108. Dynamic Imports](04-advanced/108-dynamic-imports.md)
+- [ ] [109. Tree Shaking](04-advanced/109-tree-shaking.md)
+- [ ] [110. Proxy + Reflect](04-advanced/110-proxy-reflect.md)
+- [ ] [111. Object.defineProperty](04-advanced/111-object-define-property.md)
+- [ ] [112. Property Descriptors](04-advanced/112-property-descriptors.md)
+- [ ] [113. Symbols + Well-Known Symbols](04-advanced/113-well-known-symbols.md)
+- [ ] [114. Tagged Template Literals](04-advanced/114-tagged-template-literals.md)
+- [ ] [115. Regular Expressions (RegEx)](04-advanced/115-regex.md)
+- [ ] [116. Bitwise Operators](04-advanced/116-bitwise-operators.md)
+- [ ] [117. TypeScript Basics](04-advanced/117-typescript-basics.md)
+- [ ] [118. TypeScript vs JavaScript](04-advanced/118-typescript-vs-javascript.md)
+- [ ] [119. JS Engine (V8) — How it Works](04-advanced/119-v8-engine.md)
+- [ ] [120. JIT Compilation](04-advanced/120-jit-compilation.md)
+- [ ] [121. Memory Heap + Call Stack](04-advanced/121-memory-heap-call-stack.md)
+- [ ] [122. Stack Overflow](04-advanced/122-stack-overflow.md)
+- [ ] [123. Deep Clone vs Shallow Clone](04-advanced/123-deep-shallow-clone.md)
+- [ ] [124. Structured Clone](04-advanced/124-structured-clone.md)
+- [ ] [125. Web Workers](04-advanced/125-web-workers.md)
+- [ ] [126. Service Workers](04-advanced/126-service-workers.md)
+- [ ] [127. IndexedDB](04-advanced/127-indexeddb.md)
+- [ ] [128. Performance Optimization in JS](04-advanced/128-performance-optimization.md)
+- [ ] [129. Debounce](04-advanced/129-debounce.md)
+- [ ] [130. Throttle](04-advanced/130-throttle.md)
+- [ ] [131. Debounce vs Throttle](04-advanced/131-debounce-vs-throttle.md)
+- [ ] [132. Virtual DOM concept](04-advanced/132-virtual-dom.md)
+- [ ] [133. Reconciliation](04-advanced/133-reconciliation.md)
+- [ ] [134. Lazy Loading in JS](04-advanced/134-lazy-loading.md)
+- [ ] [135. Code Splitting](04-advanced/135-code-splitting.md)
+
+### 📁 05 — DOM + Browser APIs (136–165)
+- [ ] [136. DOM — Complete Guide](05-dom-browser/136-dom-guide.md)
+- [ ] [137. DOM Selectors](05-dom-browser/137-dom-selectors.md)
+- [ ] [138. DOM Manipulation](05-dom-browser/138-dom-manipulation.md)
+- [ ] [139. innerHTML vs textContent vs innerText](05-dom-browser/139-innerhtml-textcontent.md)
+- [ ] [140. DOM Traversal](05-dom-browser/140-dom-traversal.md)
+- [ ] [141. Events — Complete Guide](05-dom-browser/141-events-guide.md)
+- [ ] [142. Event Listeners](05-dom-browser/142-event-listeners.md)
+- [ ] [143. Event Object](05-dom-browser/143-event-object.md)
+- [ ] [144. Event Bubbling](05-dom-browser/144-event-bubbling.md)
+- [ ] [145. Event Capturing](05-dom-browser/145-event-capturing.md)
+- [ ] [146. Event Delegation](05-dom-browser/146-event-delegation.md)
+- [ ] [147. Event Propagation + stopPropagation](05-dom-browser/147-event-propagation.md)
+- [ ] [148. preventDefault](05-dom-browser/148-prevent-default.md)
+- [ ] [149. Custom Events](05-dom-browser/149-custom-events.md)
+- [ ] [150. Mouse + Keyboard Events](05-dom-browser/150-mouse-keyboard-events.md)
+- [ ] [151. Form Events](05-dom-browser/151-form-events.md)
+- [ ] [152. Window Events](05-dom-browser/152-window-events.md)
+- [ ] [153. Intersection Observer API](05-dom-browser/153-intersection-observer.md)
+- [ ] [154. Mutation Observer API](05-dom-browser/154-mutation-observer.md)
+- [ ] [155. ResizeObserver API](05-dom-browser/155-resize-observer.md)
+- [ ] [156. Clipboard API](05-dom-browser/156-clipboard-api.md)
+- [ ] [157. Geolocation API](05-dom-browser/157-geolocation-api.md)
+- [ ] [158. localStorage + sessionStorage](05-dom-browser/158-localstorage-sessionstorage.md)
+- [ ] [159. Cookies in JavaScript](05-dom-browser/159-cookies.md)
+- [ ] [160. History API](05-dom-browser/160-history-api.md)
+- [ ] [161. URL + URLSearchParams](05-dom-browser/161-url-searchparams.md)
+- [ ] [162. Fetch vs Axios](05-dom-browser/162-fetch-vs-axios.md)
+- [ ] [163. WebSockets in JavaScript](05-dom-browser/163-websockets.md)
+- [ ] [164. Canvas API Basics](05-dom-browser/164-canvas-api.md)
+- [ ] [165. Drag and Drop API](05-dom-browser/165-drag-drop.md)
+
+### 📁 06 — Interview Problems (166–200)
+- [ ] [166. Reverse a String](06-interview-problems/166-reverse-string/)
+- [ ] [167. Check Palindrome](06-interview-problems/167-palindrome/)
+- [ ] [168. Find Duplicate in Array](06-interview-problems/168-find-duplicate/)
+- [ ] [169. Flatten Nested Array](06-interview-problems/169-flatten-array/)
+- [ ] [170. Deep Clone an Object](06-interview-problems/170-deep-clone/)
+- [ ] [171. Implement debounce](06-interview-problems/171-debounce/)
+- [ ] [172. Implement throttle](06-interview-problems/172-throttle/)
+- [ ] [173. Implement memoization](06-interview-problems/173-memoization/)
+- [ ] [174. Implement Promise.all](06-interview-problems/174-promise-all/)
+- [ ] [175. Implement Promise.race](06-interview-problems/175-promise-race/)
+- [ ] [176. Curry a Function](06-interview-problems/176-curry/)
+- [ ] [177. Compose Functions](06-interview-problems/177-compose/)
+- [ ] [178. Flatten Object](06-interview-problems/178-flatten-object/)
+- [ ] [179. Group By in Array](06-interview-problems/179-group-by/)
+- [ ] [180. Find Intersection of Arrays](06-interview-problems/180-array-intersection/)
+- [ ] [181. Remove Duplicates from Array](06-interview-problems/181-remove-duplicates/)
+- [ ] [182. Sort Array of Objects](06-interview-problems/182-sort-objects/)
+- [ ] [183. Count Character Frequency](06-interview-problems/183-char-frequency/)
+- [ ] [184. Anagram Check](06-interview-problems/184-anagram/)
+- [ ] [185. Implement EventEmitter](06-interview-problems/185-event-emitter/)
+- [ ] [186. Implement LRU Cache](06-interview-problems/186-lru-cache/)
+- [ ] [187. Implement call, apply, bind](06-interview-problems/187-call-apply-bind/)
+- [ ] [188. Implement new keyword](06-interview-problems/188-new-keyword/)
+- [ ] [189. Implement Object.create](06-interview-problems/189-object-create/)
+- [ ] [190. Implement Array.map, filter, reduce](06-interview-problems/190-array-methods/)
+- [ ] [191. Async Series + Parallel Execution](06-interview-problems/191-async-series-parallel/)
+- [ ] [192. Promise Chaining Problems](06-interview-problems/192-promise-chaining/)
+- [ ] [193. Event Loop Output Questions](06-interview-problems/193-event-loop-questions/)
+- [ ] [194. Hoisting Output Questions](06-interview-problems/194-hoisting-questions/)
+- [ ] [195. Closure Output Questions](06-interview-problems/195-closure-questions/)
+- [ ] [196. this Output Questions](06-interview-problems/196-this-questions/)
+- [ ] [197. Prototype Output Questions](06-interview-problems/197-prototype-questions/)
+- [ ] [198. Tricky Coercion Questions](06-interview-problems/198-coercion-questions/)
+- [ ] [199. Build Infinite Scroll](06-interview-problems/199-infinite-scroll/)
+- [ ] [200. Build Simple State Manager](06-interview-problems/200-state-manager/)
+
+---
+
+## 🚀 Quick Commands
+| Command | Action |
+|---------|--------|
+| Read topic file | Study that topic |
+| `next` | Go to next topic in sequence |
+| `revise [topic]` | Quick 5-line revision |
+| `interview mode` | Only Q&A format |
+| `tricky questions` | Output questions only |
+| `problem [number]` | Go to that problem |
+
+---
+
+## 📚 External Resources
+See [00-External-Resources.md](00-External-Resources.md) for YouTube channels, articles, and GitHub repos.
+
+---
+
+*200 topics · English + Hindi · React/Node.js examples · Interview ready*
