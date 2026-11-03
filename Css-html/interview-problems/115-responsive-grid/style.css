@@ -1,0 +1,66 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+body { margin: 0; font-family: system-ui, sans-serif; background: #f4f5f7; color: #222; }
+.top { background: #232f3e; color: #fff; padding: 14px 20px; font-weight: 600; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 20px; }
+h2 { font-size: 1.1rem; margin: 24px 0 12px; }
+
+/* ---------- 1. Auto-responsive card grid ---------- */
+.products {
+  display: grid;
+  /* As many columns as fit, each at least 200px, sharing leftover space equally */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px; /* spacing between rows and columns */
+}
+
+.product {
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .1);
+  transition: transform .2s, box-shadow .2s;
+}
+.product:hover { transform: translateY(-4px); box-shadow: 0 8px 18px rgba(0, 0, 0, .15); }
+.product h3 { margin: 10px 0 4px; font-size: 1rem; }
+.product p { margin: 0; color: #b12704; font-weight: 700; }
+
+/* Placeholder image area with a fixed shape */
+.img {
+  aspect-ratio: 4 / 3;          /* keeps shape at any width */
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #cfd8dc, #eceff1);
+  border-radius: 8px;
+  color: #546e7a;
+  font-weight: 600;
+}
+
+/* ---------- 2. Named-area page layout (mobile first) ---------- */
+.layout {
+  display: grid;
+  gap: 12px;
+  /* Mobile: single column, stacked in this order */
+  grid-template-areas:
+    "head"
+    "nav"
+    "main"
+    "aside"
+    "foot";
+}
+.layout > * { padding: 18px; border-radius: 8px; color: #fff; text-align: center; }
+.l-head  { grid-area: head;  background: #3f51b5; }
+.l-nav   { grid-area: nav;   background: #00897b; }
+.l-main  { grid-area: main;  background: #5c6bc0; min-height: 140px; }
+.l-aside { grid-area: aside; background: #ef6c00; }
+.l-foot  { grid-area: foot;  background: #455a64; }
+
+/* Tablet and up: 3 columns, sidebar | main | ads */
+@media (min-width: 768px) {
+  .layout {
+    grid-template-columns: 180px 1fr 160px; /* fixed | flexible | fixed */
+    grid-template-areas:
+      "head  head  head"
+      "nav   main  aside"
+      "foot  foot  foot";
+  }
+}

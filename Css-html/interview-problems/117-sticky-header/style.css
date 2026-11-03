@@ -1,0 +1,40 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Smooth jumping to #sections; scroll-padding stops the sticky header covering the target */
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+
+body { margin: 0; font-family: system-ui, sans-serif; color: #222; background: #fafafa; }
+
+/* ---------- Sticky header ---------- */
+.site-header {
+  position: sticky;   /* normal flow until it reaches top:0, then sticks */
+  top: 0;             /* the offset at which it sticks (required!) */
+  z-index: 100;       /* stay above page content */
+  background: rgba(255, 255, 255, .92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e5e7eb;
+  transition: box-shadow .25s;
+}
+/* Class added by JS after scrolling */
+.site-header.is-scrolled { box-shadow: 0 4px 14px rgba(0, 0, 0, .12); }
+
+.site-header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  height: 64px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo { font-weight: 800; font-size: 1.3rem; color: #e65100; text-decoration: none; }
+.nav { display: flex; gap: 20px; }
+.nav a { color: #333; text-decoration: none; font-weight: 500; }
+.nav a:hover { color: #e65100; }
+.nav a:focus-visible { outline: 2px solid #e65100; outline-offset: 3px; }
+
+/* ---------- Page content (just to make the page scroll) ---------- */
+.content { max-width: 1000px; margin: 0 auto; padding: 0 20px 60px; }
+.hero { padding: 80px 0; text-align: center; }
+.block { min-height: 70vh; padding: 20px 0; border-top: 1px solid #eee; line-height: 1.6; }

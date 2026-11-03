@@ -1,0 +1,145 @@
+/* ───────── RESET & VARIABLES ───────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --nav-bg: #232f3e;       /* dark header */
+  --nav-text: #ffffff;
+  --accent: #febd69;       /* hover / CTA color */
+  --nav-height: 60px;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #f3f4f6;
+  color: #222;
+}
+
+/* ───────── SKIP LINK (accessibility) ───────── */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -48px;              /* hidden above the screen */
+  background: #fff;
+  padding: 8px 12px;
+  z-index: 200;
+}
+.skip-link:focus { top: 8px; }   /* slides in when tabbed to */
+
+/* ───────── HEADER ───────── */
+.site-header {
+  position: sticky;        /* stays on top while scrolling */
+  top: 0;
+  z-index: 100;
+  background: var(--nav-bg);
+}
+
+/* ───────── NAVBAR (mobile first) ───────── */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;   /* logo left, hamburger right */
+  flex-wrap: wrap;                  /* menu drops to a new line */
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+  min-height: var(--nav-height);
+}
+
+.brand {
+  color: var(--nav-text);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* Hide the real checkbox visually but keep it focusable */
+.nav-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Hamburger icon: three bars */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  cursor: pointer;
+}
+.hamburger span {
+  height: 3px;
+  background: var(--nav-text);
+  border-radius: 2px;
+  transition: transform .25s, opacity .25s;
+}
+
+/* Keyboard focus ring on the (invisible) checkbox shows on the hamburger */
+.nav-toggle:focus-visible + .hamburger {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* Turn hamburger into an X when open */
+.nav-toggle:checked + .hamburger span:nth-child(1) { transform: translateY(8.5px) rotate(45deg); }
+.nav-toggle:checked + .hamburger span:nth-child(2) { opacity: 0; }
+.nav-toggle:checked + .hamburger span:nth-child(3) { transform: translateY(-8.5px) rotate(-45deg); }
+
+/* Links list: collapsed on mobile */
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;              /* full width row under logo */
+  max-height: 0;            /* collapsed */
+  overflow: hidden;
+  transition: max-height .3s ease;
+}
+/* Open state when checkbox is checked */
+.nav-toggle:checked ~ .nav-links { max-height: 400px; }
+
+.nav-links a {
+  display: block;
+  padding: 14px 8px;
+  color: var(--nav-text);
+  text-decoration: none;
+  border-top: 1px solid rgb(255 255 255 / .1);
+}
+.nav-links a:hover,
+.nav-links a:focus-visible { color: var(--accent); }
+.nav-links a[aria-current="page"] { border-left: 3px solid var(--accent); padding-left: 12px; }
+
+.cta {
+  background: var(--accent);
+  color: #111 !important;
+  border-radius: 6px;
+  text-align: center;
+  margin: 8px 0 12px;
+}
+
+/* ───────── DESKTOP (>= 768px) ───────── */
+@media (min-width: 768px) {
+  .hamburger { display: none; }      /* no hamburger on desktop */
+
+  .nav-links {
+    display: flex;                   /* links in a row */
+    width: auto;
+    max-height: none;                /* always visible */
+    overflow: visible;
+    align-items: center;
+    gap: 4px;
+  }
+  .nav-links a { border-top: 0; padding: 10px 14px; }
+  .nav-links a[aria-current="page"] { border-left: 0; border-bottom: 2px solid var(--accent); padding-left: 14px; }
+  .cta { margin: 0 0 0 8px; }
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .nav-links, .hamburger span { transition: none; }
+}
+
+/* ───────── PAGE CONTENT (demo only) ───────── */
+.content { max-width: 1100px; margin: 0 auto; padding: 24px 16px; min-height: 150vh; }

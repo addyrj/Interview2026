@@ -1,0 +1,107 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+:root { --brand: #e23744; --dark: #1c1c1c; }
+
+body { margin: 0; font-family: system-ui, sans-serif; background: #f4f5f7; color: #222; }
+.wrap { max-width: 860px; margin: 0 auto; padding: 30px 20px; text-align: center; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 24px; margin-top: 30px; }
+
+/* ---------- Shared base button ---------- */
+.btn {
+  position: relative;
+  padding: 13px 22px;
+  border: 2px solid var(--brand);
+  border-radius: 10px;
+  background: var(--brand);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;       /* clips fills/ripples inside the button */
+  /* animate specific properties, never "all" */
+  transition: transform .2s ease, box-shadow .2s ease, background-color .25s ease, color .25s ease;
+}
+.btn:focus-visible { outline: 3px solid #fbbc04; outline-offset: 3px; }
+.btn:active { transform: scale(.97); } /* press feedback */
+
+/* Hover effects only on devices that really hover (avoid sticky hover on touch) */
+@media (hover: hover) {
+
+  /* 1. Lift + shadow */
+  .b-lift:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(226, 55, 68, .35); }
+
+  /* 2. Slide fill: hover state (base styles are below, outside the media query) */
+  .b-fill:hover { color: #fff; }
+  .b-fill:hover::before { transform: translateX(0); }
+
+  /* 3. Outline to solid */
+  .b-outline:hover { background: var(--brand); color: #fff; }
+
+  /* 4. Glow */
+  .b-glow:hover { box-shadow: 0 0 0 4px rgba(98, 0, 234, .25), 0 0 24px rgba(98, 0, 234, .6); }
+
+  /* 5. Arrow slides right */
+  .b-arrow:hover .arrow { transform: translateX(6px); }
+
+  /* 6. Underline grows from the centre */
+  .b-underline:hover::after { transform: scaleX(1); }
+
+  /* 8. Gradient shift: background-position is animatable, gradients themselves are not */
+  .b-grad:hover { background-position: 100% 0; }
+}
+
+/* Resting styles for effects 2-4 (kept outside the hover media query so touch devices look right) */
+.b-fill { background: #fff; color: var(--brand); z-index: 0; }
+.b-fill::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--brand);
+  transform: translateX(-101%);            /* parked off-screen */
+  transition: transform .3s ease;
+  z-index: -1;                             /* behind the text */
+}
+.b-outline { background: transparent; color: var(--brand); }
+.b-glow { background: #6200ea; border-color: #6200ea; }
+
+/* Arrow icon */
+.arrow { display: inline-block; font-style: normal; margin-left: 6px; transition: transform .25s ease; }
+
+/* 6. Underline setup */
+.b-underline { background: transparent; border-color: transparent; color: var(--dark); }
+.b-underline::after {
+  content: "";
+  position: absolute; left: 12%; right: 12%; bottom: 8px;
+  height: 2px; background: var(--brand);
+  transform: scaleX(0);                      /* collapsed */
+  transform-origin: center;
+  transition: transform .3s ease;
+}
+
+/* 7. Ripple */
+.b-ripple { background: #00897b; border-color: #00897b; }
+.ripple {
+  position: absolute;
+  width: 20px; height: 20px;
+  margin: -10px 0 0 -10px;                   /* centre the circle on the click point */
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .55);
+  pointer-events: none;
+  animation: ripple .6s ease-out forwards;
+}
+@keyframes ripple { to { transform: scale(14); opacity: 0; } }
+
+/* 8. Gradient setup: gradient is 200% wide, hover slides it */
+.b-grad {
+  border-color: transparent;
+  background: linear-gradient(90deg, #ff512f, #dd2476, #6a11cb);
+  background-size: 200% 100%;
+  background-position: 0 0;
+  background-origin: border-box; /* gradient also paints under the (transparent) border */
+  transition: background-position .5s ease, transform .2s ease;
+}
+
+/* Reduced motion: keep colour changes, drop movement */
+@media (prefers-reduced-motion: reduce) {
+  .btn, .btn::before, .btn::after, .arrow { transition: none; }
+  .ripple { animation: none; display: none; }
+}

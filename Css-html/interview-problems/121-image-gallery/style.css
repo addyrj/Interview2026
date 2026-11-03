@@ -1,0 +1,83 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+body { margin: 0; font-family: system-ui, sans-serif; background: #111; color: #eee; }
+.wrap { max-width: 1000px; margin: 0 auto; padding: 20px; }
+h1 { font-size: 1.4rem; }
+.hint { color: #999; font-size: .85rem; }
+
+/* ---------- Gallery grid ---------- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* responsive columns */
+  grid-auto-rows: 160px;       /* every implicit row is 160px tall */
+  grid-auto-flow: dense;       /* back-fill holes left by big tiles */
+  gap: 10px;
+}
+
+/* ---------- One tile ---------- */
+.tile {
+  position: relative;
+  margin: 0;
+  overflow: hidden;            /* clips the zoomed image */
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Spanning tiles */
+.wide { grid-column: span 2; }            /* 2 columns wide */
+.tall { grid-row: span 2; }               /* 2 rows tall */
+.big  { grid-column: span 2; grid-row: span 2; }
+
+/* Placeholder for an image. For a real <img> use the .tile img rule below */
+.ph {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, .85);
+  transition: transform .4s ease;
+}
+.c1 .ph { background: linear-gradient(135deg, #ff7043, #d84315); }
+.c2 .ph { background: linear-gradient(135deg, #26c6da, #00838f); }
+.c3 .ph { background: linear-gradient(135deg, #ab47bc, #6a1b9a); }
+.c4 .ph { background: linear-gradient(135deg, #66bb6a, #2e7d32); }
+.c5 .ph { background: linear-gradient(135deg, #42a5f5, #1565c0); }
+.c6 .ph { background: linear-gradient(135deg, #ffca28, #f57f17); }
+.c7 .ph { background: linear-gradient(135deg, #ec407a, #ad1457); }
+.c8 .ph { background: linear-gradient(135deg, #8d6e63, #4e342e); }
+
+/* Real images: fill the cell without stretching */
+.tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           /* crop to fill, keep ratio */
+  display: block;
+  transition: transform .4s ease;
+}
+
+/* Hover: zoom the picture inside a clipped frame */
+.tile:hover .ph, .tile:hover img { transform: scale(1.08); }
+
+/* Caption slides up on hover */
+.tile figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 10px 12px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, .75));
+  font-size: .9rem;
+  transform: translateY(100%);
+  transition: transform .3s ease;
+}
+.tile:hover figcaption, .tile:focus-within figcaption { transform: none; }
+
+/* Small phones: 2 columns, big tiles no wider than the grid */
+@media (max-width: 420px) {
+  .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 120px; }
+  .big, .wide { grid-column: span 2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ph, .tile img, .tile figcaption { transition: none; }
+}

@@ -1,0 +1,82 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+body { margin: 0; padding: 24px; font-family: system-ui, sans-serif; background: #f4f5f7; color: #222; }
+h1, h2 { text-align: center; }
+h2 { font-size: 1.05rem; margin-top: 36px; }
+
+.row { display: flex; flex-wrap: wrap; gap: 28px; justify-content: center; align-items: flex-end; }
+figure { margin: 0; text-align: center; font-size: .8rem; color: #555; }
+figcaption { margin-top: 8px; max-width: 120px; }
+
+/* ---- Step 1: why it works. A 0x0 box with thick borders ----
+   Each border is a trapezoid; they meet at 45-degree diagonals.
+   With zero width/height only the 4 triangles remain. */
+.joint {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 40px;
+  border-color: #e53935 #43a047 #1e88e5 #fdd835; /* top right bottom left */
+}
+
+/* ---- Step 2: keep only ONE coloured border, make the rest transparent ---- */
+.tri { width: 0; height: 0; border-style: solid; }
+
+/* UP: visible bottom border; left/right transparent make the slopes */
+.tri-up {
+  border-width: 0 40px 70px 40px;              /* top right bottom left */
+  border-color: transparent transparent #3f51b5 transparent;
+}
+
+/* DOWN: visible top border */
+.tri-down {
+  border-width: 70px 40px 0 40px;
+  border-color: #3f51b5 transparent transparent transparent;
+}
+
+/* LEFT: visible right border */
+.tri-left {
+  border-width: 40px 70px 40px 0;
+  border-color: transparent #3f51b5 transparent transparent;
+}
+
+/* RIGHT: visible left border */
+.tri-right {
+  border-width: 40px 0 40px 70px;
+  border-color: transparent transparent transparent #3f51b5;
+}
+
+/* CORNER (right-angle): top border + transparent right */
+.tri-corner {
+  border-width: 70px 70px 0 0;
+  border-color: #e91e63 transparent transparent transparent;
+}
+
+/* ---- Real use: speech-bubble arrow via ::after ---- */
+.bubble {
+  position: relative;       /* anchor for the arrow */
+  width: fit-content;
+  margin: 30px auto;
+  padding: 14px 20px;
+  background: #1a73e8;
+  color: #fff;
+  border-radius: 10px;
+}
+.bubble::after {
+  content: "";
+  position: absolute;
+  top: 100%;                 /* sits right below the bubble */
+  left: 24px;
+  border-style: solid;
+  border-width: 10px 10px 0 10px;                   /* DOWN triangle */
+  border-color: #1a73e8 transparent transparent transparent; /* same colour as bubble */
+}
+
+/* ---- Modern alternative: clip-path (supported in all modern browsers) ---- */
+.clip-tri {
+  width: 80px;
+  height: 70px;
+  margin: 10px auto;
+  background: #00897b;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%); /* top-middle, bottom-right, bottom-left */
+}

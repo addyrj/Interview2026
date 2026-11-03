@@ -1,0 +1,88 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+body { margin: 0; font-family: system-ui, sans-serif; background: #fafafa; color: #222; }
+.page { padding: 30px 20px; max-width: 700px; margin: 0 auto; }
+
+/* ---------- Top bar (mobile first) ---------- */
+.bar {
+  position: relative;       /* anchor for the dropdown menu */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  height: 60px;
+  background: #cb202d;
+  color: #fff;
+}
+.logo { color: #fff; font-weight: 800; font-size: 1.2rem; text-decoration: none; }
+
+/* ---------- Hamburger button ---------- */
+.burger {
+  width: 44px;               /* 44px = recommended minimum touch target */
+  height: 44px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;                  /* space between the 3 lines */
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.burger:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+.burger__line {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform .3s ease, opacity .2s ease; /* animate only transform + opacity */
+}
+
+/* OPEN state -> X.  Line spacing = 3px height + 6px gap = 9px */
+.burger.is-open .burger__line:nth-child(1) { transform: translateY(9px) rotate(45deg); }  /* top line moves down, rotates */
+.burger.is-open .burger__line:nth-child(2) { opacity: 0; }                                 /* middle fades out */
+.burger.is-open .burger__line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); } /* bottom moves up, rotates */
+
+/* ---------- Mobile dropdown menu ---------- */
+.menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+  /* closed state: invisible, shifted up, not clickable */
+  opacity: 0;
+  transform: translateY(-10px);
+  visibility: hidden;
+  transition: opacity .25s, transform .25s, visibility .25s;
+}
+.menu.is-open { opacity: 1; transform: none; visibility: visible; }
+.menu a { padding: 14px 20px; color: #333; text-decoration: none; border-bottom: 1px solid #eee; }
+.menu a:hover { background: #fdecea; }
+
+/* ---------- Desktop: show inline links, hide the burger ---------- */
+@media (min-width: 700px) {
+  .burger { display: none; }
+  .menu {
+    position: static;
+    flex-direction: row;
+    background: none;
+    box-shadow: none;
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+  }
+  .menu a { color: #fff; border: 0; padding: 8px 14px; }
+  .menu a:hover { background: rgba(255, 255, 255, .15); }
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .burger__line, .menu { transition: none; }
+}

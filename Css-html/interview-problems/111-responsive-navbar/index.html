@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Required for responsive CSS to work on phones -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Navbar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Skip link: keyboard users jump straight to content -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main">
+      <!-- Logo -->
+      <a class="brand" href="#">ShopEasy</a>
+
+      <!-- Checkbox hack input: lets the menu work even without JS.
+           It must come BEFORE the label and the menu (sibling selectors). -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+
+      <!-- Hamburger button (visible on mobile only) -->
+      <label for="nav-toggle" class="hamburger" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </label>
+
+      <!-- Links list -->
+      <ul class="nav-links">
+        <li><a href="#" aria-current="page">Home</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Deals</a></li>
+        <li><a href="#">About</a></li>
+        <li><a class="cta" href="#">Sign in</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="content">
+    <h1>Resize the window</h1>
+    <p>Above 768px the links sit in a row. Below it, they collapse behind the hamburger.</p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>116. CSS Triangle using Borders</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>CSS Triangles with Borders</h1>
+
+  <div class="row">
+    <!-- Show how borders meet at diagonal joints -->
+    <figure><div class="joint"></div><figcaption>4 coloured borders on a 0x0 box</figcaption></figure>
+
+    <figure><div class="tri tri-up"></div><figcaption>Up</figcaption></figure>
+    <figure><div class="tri tri-down"></div><figcaption>Down</figcaption></figure>
+    <figure><div class="tri tri-left"></div><figcaption>Left</figcaption></figure>
+    <figure><div class="tri tri-right"></div><figcaption>Right</figcaption></figure>
+    <figure><div class="tri tri-corner"></div><figcaption>Top-right corner</figcaption></figure>
+  </div>
+
+  <h2>Real use: speech bubble arrow</h2>
+  <!-- The arrow is a ::after pseudo-element, no extra HTML needed -->
+  <div class="bubble">Your order is out for delivery!</div>
+
+  <h2>Modern alternative: clip-path</h2>
+  <div class="clip-tri"></div>
+</body>
+</html>

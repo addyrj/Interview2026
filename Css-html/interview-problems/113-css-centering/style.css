@@ -1,0 +1,102 @@
+/* Modern reset: width includes padding + border */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 24px;
+  font-family: system-ui, sans-serif;
+  background: #f4f5f7;
+  color: #222;
+}
+
+h1 { text-align: center; font-size: 1.5rem; }
+
+/* Responsive card grid: as many 240px+ columns as fit */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+}
+.card h2 { margin: 0 0 10px; font-size: 1rem; }
+.card code { display: block; margin-top: 10px; font-size: .75rem; color: #b3261e; }
+
+/* Shared "stage" - the parent box inside which we center the dot */
+.stage {
+  height: 140px;
+  background: #e8eaf6;
+  border: 2px dashed #7986cb;
+  border-radius: 8px;
+}
+
+/* The thing being centered */
+.dot {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #3f51b5;
+  color: #fff;
+  font-weight: 700;
+  /* centers the letter inside the dot (also flexbox) */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 1. FLEXBOX - the most common answer */
+.way-flex {
+  display: flex;
+  justify-content: center; /* main axis (horizontal) */
+  align-items: center;     /* cross axis (vertical) */
+}
+
+/* 2. GRID - shortest answer, 2 lines */
+.way-grid {
+  display: grid;
+  place-items: center; /* shorthand for align-items + justify-items */
+}
+
+/* 3. ABSOLUTE + TRANSFORM - works with unknown child size */
+.way-abs { position: relative; } /* positioning context */
+.way-abs .dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* pull back by half own size */
+}
+
+/* 4. INSET + MARGIN AUTO - needs a fixed width/height on child */
+.way-inset { position: relative; }
+.way-inset .dot {
+  position: absolute;
+  inset: 0;     /* top/right/bottom/left: 0 (modern shorthand) */
+  margin: auto; /* auto margins split the free space equally */
+}
+
+/* 5. LEGACY - text-align + line-height (single line / inline content) */
+.way-text {
+  text-align: center;  /* horizontal */
+  line-height: 140px;  /* same as height -> vertical */
+}
+.way-text .dot { line-height: normal; vertical-align: middle; }
+
+/* BONUS - horizontal only */
+.way-margin { padding-top: 40px; }
+.bar {
+  width: 120px;
+  margin: 0 auto; /* left/right auto = centered */
+  padding: 12px 8px;
+  text-align: center;
+  font-size: .8rem;
+  color: #fff;
+  background: #3f51b5;
+  border-radius: 6px;
+}

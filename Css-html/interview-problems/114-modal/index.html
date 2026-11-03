@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>114. Modal / Popup</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <h1>Modal / Popup Demo</h1>
+    <p>Click the button to open a native &lt;dialog&gt; modal. Press Esc or click the backdrop to close.</p>
+    <button class="btn" id="openBtn" type="button">Open Modal</button>
+  </main>
+
+  <!-- Native dialog: gives focus trap, Esc to close, ::backdrop, top layer -->
+  <dialog id="modal" class="modal" aria-labelledby="modalTitle">
+    <header class="modal__head">
+      <h2 id="modalTitle">Delete this order?</h2>
+      <button class="modal__close" id="closeBtn" type="button" aria-label="Close dialog">&times;</button>
+    </header>
+    <p class="modal__body">Your Swiggy order #4821 will be cancelled. This cannot be undone.</p>
+    <footer class="modal__foot">
+      <button class="btn btn--ghost" id="cancelBtn" type="button">Cancel</button>
+      <button class="btn btn--danger" id="confirmBtn" type="button">Yes, delete</button>
+    </footer>
+  </dialog>
+
+  <script>
+    // Grab elements
+    const modal = document.getElementById('modal');
+    const openBtn = document.getElementById('openBtn');
+
+    // showModal() = modal with backdrop, focus trap, Esc support
+    openBtn.addEventListener('click', () => modal.showModal());
+
+    // Close buttons
+    ['closeBtn', 'cancelBtn', 'confirmBtn'].forEach((id) => {
+      document.getElementById(id).addEventListener('click', () => modal.close());
+    });
+
+    // Click on backdrop: the click target is the <dialog> itself
+    modal.addEventListener('click', (e) => {
+      const r = modal.getBoundingClientRect();
+      const inside = e.clientX >= r.left && e.clientX <= r.right &&
+                     e.clientY >= r.top && e.clientY <= r.bottom;
+      if (!inside) modal.close();
+    });
+  </script>
+</body>
+</html>

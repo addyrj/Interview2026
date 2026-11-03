@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>120. Responsive Table</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <h1>Responsive Table</h1>
+
+    <!-- Pattern 1: horizontal scroll wrapper (works for any table) -->
+    <h2>1. Scroll wrapper</h2>
+    <div class="scroll" tabindex="0" role="region" aria-label="Orders table (scrollable)">
+      <table class="table">
+        <caption class="sr-only">Recent orders</caption>
+        <thead>
+          <tr><th scope="col">Order</th><th scope="col">Restaurant</th><th scope="col">Items</th><th scope="col">Status</th><th scope="col">Total</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>#4821</td><td>Biryani House</td><td>2</td><td><span class="tag ok">Delivered</span></td><td>Rs 540</td></tr>
+          <tr><td>#4822</td><td>Pizza Point</td><td>1</td><td><span class="tag wait">On the way</span></td><td>Rs 299</td></tr>
+          <tr><td>#4823</td><td>Dosa Corner</td><td>3</td><td><span class="tag bad">Cancelled</span></td><td>Rs 410</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pattern 2: stacked cards on mobile using data-label -->
+    <h2>2. Stacked cards on mobile</h2>
+    <table class="table stack">
+      <thead>
+        <tr><th scope="col">Order</th><th scope="col">Restaurant</th><th scope="col">Items</th><th scope="col">Status</th><th scope="col">Total</th></tr>
+      </thead>
+      <tbody>
+        <!-- data-label is shown as a label on small screens via attr() -->
+        <tr><td data-label="Order">#4821</td><td data-label="Restaurant">Biryani House</td><td data-label="Items">2</td><td data-label="Status"><span class="tag ok">Delivered</span></td><td data-label="Total">Rs 540</td></tr>
+        <tr><td data-label="Order">#4822</td><td data-label="Restaurant">Pizza Point</td><td data-label="Items">1</td><td data-label="Status"><span class="tag wait">On the way</span></td><td data-label="Total">Rs 299</td></tr>
+        <tr><td data-label="Order">#4823</td><td data-label="Restaurant">Dosa Corner</td><td data-label="Items">3</td><td data-label="Status"><span class="tag bad">Cancelled</span></td><td data-label="Total">Rs 410</td></tr>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>

@@ -1,0 +1,80 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --brand: #1a73e8;
+  --danger: #d93025;
+  --ok: #188038;
+  --border: #c7ccd1;
+  --radius: 8px;
+}
+
+body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 20px; font-family: system-ui, sans-serif; background: #eef1f5; color: #222; }
+
+.card { width: min(100%, 420px); padding: 28px; background: #fff; border-radius: 14px; box-shadow: 0 8px 30px rgba(0, 0, 0, .1); }
+.card h1 { margin: 0 0 18px; font-size: 1.4rem; }
+
+.form { display: grid; gap: 16px; }
+.field { display: grid; gap: 6px; border: 0; padding: 0; margin: 0; min-width: 0; }
+label, legend { font-weight: 600; font-size: .9rem; padding: 0; }
+
+/* ---------- Inputs, select, textarea ---------- */
+input[type="text"], input[type="email"], input[type="password"], select, textarea {
+  width: 100%;
+  padding: 11px 12px;
+  font: inherit;                 /* form controls do not inherit fonts by default! */
+  color: inherit;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color .2s, box-shadow .2s;
+}
+textarea { resize: vertical; }
+input::placeholder, textarea::placeholder { color: #9aa0a6; }
+
+/* Focus: visible ring (never remove outline without a replacement) */
+input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 4px rgba(26, 115, 232, .2);
+}
+
+/* ---------- Validation states ---------- */
+/* :user-invalid only matches AFTER the user interacts (modern browsers).
+   Fallback for older browsers: :invalid:not(:placeholder-shown) */
+input:user-invalid, select:user-invalid { border-color: var(--danger); }
+input:user-valid { border-color: var(--ok); }
+
+/* Error message appears only when its input is invalid after interaction.
+   Sibling combinator + :has() style alternative also works. */
+.error { display: none; color: var(--danger); font-size: .8rem; }
+input:user-invalid ~ .error { display: block; }
+input:user-invalid ~ .hint { display: none; }
+.hint { color: #6b7280; font-size: .8rem; }
+
+/* ---------- Radio / checkbox ---------- */
+.inline { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; margin-right: 16px; cursor: pointer; }
+input[type="radio"], input[type="checkbox"] {
+  accent-color: var(--brand);   /* one line to theme native controls */
+  width: 18px; height: 18px;
+}
+
+/* ---------- Submit button ---------- */
+.submit {
+  padding: 12px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--brand);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter .2s, transform .1s;
+}
+.submit:hover { filter: brightness(1.08); }
+.submit:active { transform: scale(.98); }
+.submit:focus-visible { outline: 3px solid #fbbc04; outline-offset: 2px; }
+
+/* Stop iOS Safari from zooming on focus: inputs need >= 16px font size */
+@media (max-width: 600px) {
+  input, select, textarea { font-size: 16px; }
+}

@@ -1,0 +1,119 @@
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ---------- Theme tokens (light is default) ---------- */
+:root,
+[data-theme="light"] {
+  color-scheme: light;            /* native scrollbar + inputs use light UI */
+  --bg: #ffffff;
+  --surface: #f5f5f7;
+  --text: #1c1c1e;
+  --muted: #6b7280;
+  --border: #d9d9de;
+  --accent: #2563eb;
+  --accent-text: #ffffff;
+  --shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+}
+
+/* Dark tokens: same names, different values */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121214;
+  --surface: #1e1e22;
+  --text: #f2f2f3;
+  --muted: #a1a1aa;
+  --border: #35353b;
+  --accent: #60a5fa;
+  --accent-text: #0b1220;
+  --shadow: 0 2px 8px rgb(0 0 0 / 0.6);
+}
+
+/* ---------- Base: only uses variables ---------- */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  /* smooth theme change */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.muted { color: var(--muted); }
+
+/* ---------- Top bar ---------- */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.logo { font-weight: 700; font-size: 1.2rem; color: var(--accent); }
+
+/* ---------- Toggle switch ---------- */
+.toggle {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.toggle:focus-visible {            /* keyboard focus ring */
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+.toggle__thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.3s;
+}
+/* Slide the thumb when dark is active */
+.toggle[aria-pressed="true"] .toggle__thumb { transform: translateX(24px); }
+
+/* ---------- Page content ---------- */
+.page { max-width: 480px; margin: 0 auto; padding: 24px 16px; }
+
+.card {
+  margin: 24px 0;
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+.card h2 { margin: 0 0 4px; }
+.price { font-size: 1.4rem; font-weight: 700; }
+
+.btn {
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.field { display: grid; gap: 6px; font-weight: 600; }
+.field input {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* Respect users who dislike motion */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

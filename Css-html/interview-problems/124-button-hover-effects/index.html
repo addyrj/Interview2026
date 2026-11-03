@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>124. CSS Button Hover Effects</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <h1>CSS Button Hover Effects</h1>
+    <p>Hover, press (active) and Tab (focus) each button.</p>
+
+    <div class="grid">
+      <button class="btn b-lift" type="button">Lift + shadow</button>
+      <button class="btn b-fill" type="button"><span>Slide fill</span></button>
+      <button class="btn b-outline" type="button">Outline to solid</button>
+      <button class="btn b-glow" type="button">Glow</button>
+      <button class="btn b-arrow" type="button">Continue <i class="arrow" aria-hidden="true">&rarr;</i></button>
+      <button class="btn b-underline" type="button">Underline grow</button>
+      <button class="btn b-ripple" type="button">Click ripple</button>
+      <button class="btn b-grad" type="button">Gradient shift</button>
+    </div>
+  </main>
+
+  <script>
+    // Ripple: place a circle where the user clicked and animate it
+    document.querySelector('.b-ripple').addEventListener('click', (e) => {
+      const btn = e.currentTarget;
+      const rect = btn.getBoundingClientRect();
+      const dot = document.createElement('span');
+      dot.className = 'ripple';
+      dot.style.left = (e.clientX - rect.left) + 'px'; // click position inside the button
+      dot.style.top = (e.clientY - rect.top) + 'px';
+      btn.appendChild(dot);
+      dot.addEventListener('animationend', () => dot.remove()); // clean up
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>113. CSS Centering - 5 Ways</title>
+  <!-- All styles live in style.css (same folder) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>CSS Centering: 5 Different Ways</h1>
+
+  <div class="grid">
+    <!-- Way 1: Flexbox -->
+    <section class="card">
+      <h2>1. Flexbox</h2>
+      <div class="stage way-flex"><span class="dot">A</span></div>
+      <code>display:flex; justify-content:center; align-items:center</code>
+    </section>
+
+    <!-- Way 2: Grid -->
+    <section class="card">
+      <h2>2. Grid place-items</h2>
+      <div class="stage way-grid"><span class="dot">B</span></div>
+      <code>display:grid; place-items:center</code>
+    </section>
+
+    <!-- Way 3: Absolute + transform -->
+    <section class="card">
+      <h2>3. Absolute + transform</h2>
+      <div class="stage way-abs"><span class="dot">C</span></div>
+      <code>top:50%; left:50%; transform:translate(-50%,-50%)</code>
+    </section>
+
+    <!-- Way 4: Absolute + inset + margin auto -->
+    <section class="card">
+      <h2>4. inset:0 + margin:auto</h2>
+      <div class="stage way-inset"><span class="dot">D</span></div>
+      <code>position:absolute; inset:0; margin:auto; width/height fixed</code>
+    </section>
+
+    <!-- Way 5: Legacy text-align + line-height -->
+    <section class="card">
+      <h2>5. text-align + line-height</h2>
+      <div class="stage way-text"><span class="dot">E</span></div>
+      <code>text-align:center; line-height = height (single line only)</code>
+    </section>
+
+    <!-- Bonus: horizontal-only classic -->
+    <section class="card">
+      <h2>Bonus: margin: 0 auto</h2>
+      <div class="stage way-margin"><div class="bar">fixed width block</div></div>
+      <code>width:120px; margin:0 auto (horizontal only)</code>
+    </section>
+  </div>
+</body>
+</html>

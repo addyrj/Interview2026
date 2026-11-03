@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>117. Sticky Header</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sticky header: stays at the top while scrolling -->
+  <header class="site-header" id="header">
+    <div class="site-header__inner">
+      <a class="logo" href="#">ShopNow</a>
+      <nav class="nav" aria-label="Main">
+        <a href="#deals">Deals</a>
+        <a href="#orders">Orders</a>
+        <a href="#cart">Cart</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="hero"><h1>Scroll down</h1><p>The header sticks and gains a shadow.</p></section>
+    <section id="deals" class="block"><h2>Deals</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p></section>
+    <section id="orders" class="block"><h2>Orders</h2><p>Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.</p></section>
+    <section id="cart" class="block"><h2>Cart</h2><p>Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.</p></section>
+    <section class="block"><h2>More</h2><p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p></section>
+  </main>
+
+  <script>
+    // Add a shadow class once the user scrolls past 10px
+    const header = document.getElementById('header');
+    const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 10);
+    window.addEventListener('scroll', onScroll, { passive: true }); // passive = smoother scrolling
+    onScroll(); // set the initial state on load
+  </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Component</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <h1>Restaurants near you</h1>
+
+    <!-- Responsive grid of cards -->
+    <section class="card-grid" aria-label="Restaurants">
+
+      <!-- CARD 1 -->
+      <article class="card">
+        <!-- Image with a fixed ratio so layout does not jump while loading -->
+        <div class="card__media">
+          <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225'%3E%3Crect width='400' height='225' fill='%23fb923c'/%3E%3C/svg%3E"
+               alt="Plate of biryani" width="400" height="225">
+          <span class="card__badge">20% OFF</span>
+        </div>
+
+        <div class="card__body">
+          <div class="card__row">
+            <h2 class="card__title"><a href="#" class="card__link">Biryani House</a></h2>
+            <span class="card__rating" aria-label="Rated 4.5 out of 5">4.5</span>
+          </div>
+          <p class="card__meta">North Indian &middot; 30 min</p>
+          <p class="card__text">Slow-cooked dum biryani with raita and a side of kebabs.</p>
+        </div>
+
+        <footer class="card__footer">
+          <span class="card__price">&#8377;249 for one</span>
+          <button class="btn" type="button">Order</button>
+        </footer>
+      </article>
+
+      <!-- CARD 2: long text to show equal heights + clamp -->
+      <article class="card">
+        <div class="card__media">
+          <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225'%3E%3Crect width='400' height='225' fill='%2338bdf8'/%3E%3C/svg%3E"
+               alt="Pizza slices" width="400" height="225">
+        </div>
+        <div class="card__body">
+          <div class="card__row">
+            <h2 class="card__title"><a href="#" class="card__link">The Very Long Named Pizza Corner and Italian Kitchen</a></h2>
+            <span class="card__rating">4.1</span>
+          </div>
+          <p class="card__meta">Italian &middot; 25 min</p>
+          <p class="card__text">Wood-fired pizzas, fresh pasta, garlic bread, tiramisu and seasonal specials that change every week. This text is longer on purpose, so the line clamp cuts it after three lines with an ellipsis.</p>
+        </div>
+        <footer class="card__footer">
+          <span class="card__price">&#8377;399 for one</span>
+          <button class="btn" type="button">Order</button>
+        </footer>
+      </article>
+
+      <!-- CARD 3 -->
+      <article class="card">
+        <div class="card__media">
+          <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225'%3E%3Crect width='400' height='225' fill='%2334d399'/%3E%3C/svg%3E"
+               alt="Fresh salad bowl" width="400" height="225">
+        </div>
+        <div class="card__body">
+          <div class="card__row">
+            <h2 class="card__title"><a href="#" class="card__link">Salad Bar</a></h2>
+            <span class="card__rating">4.7</span>
+          </div>
+          <p class="card__meta">Healthy &middot; 20 min</p>
+          <p class="card__text">Build-your-own bowls.</p>
+        </div>
+        <footer class="card__footer">
+          <span class="card__price">&#8377;199 for one</span>
+          <button class="btn" type="button">Order</button>
+        </footer>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

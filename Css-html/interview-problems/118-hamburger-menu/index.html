@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>118. Hamburger Menu Animation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="bar">
+    <a class="logo" href="#">Zomato-ish</a>
+
+    <!-- The button: 3 spans become 3 lines. aria-expanded tells screen readers the state -->
+    <button class="burger" id="burger" type="button"
+            aria-label="Toggle menu" aria-expanded="false" aria-controls="menu">
+      <span class="burger__line"></span>
+      <span class="burger__line"></span>
+      <span class="burger__line"></span>
+    </button>
+
+    <nav class="menu" id="menu" aria-label="Main">
+      <a href="#">Home</a>
+      <a href="#">Restaurants</a>
+      <a href="#">Offers</a>
+      <a href="#">Login</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1>Hamburger Menu</h1>
+    <p>Resize below 700px. Click the icon: three lines morph into an X and the menu slides down.</p>
+  </main>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('menu');
+
+    burger.addEventListener('click', () => {
+      // Toggle the "open" class on both the icon and the menu
+      const isOpen = burger.classList.toggle('is-open');
+      menu.classList.toggle('is-open', isOpen);
+      // Keep accessibility state in sync
+      burger.setAttribute('aria-expanded', String(isOpen));
+    });
+  </script>
+</body>
+</html>

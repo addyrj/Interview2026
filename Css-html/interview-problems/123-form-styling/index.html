@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>123. Form Styling</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <h1>Create account</h1>
+
+    <!-- novalidate is NOT used: browser validation drives :user-invalid / :invalid styles -->
+    <form class="form" action="#" method="post">
+
+      <!-- Text input with label (label[for] = input[id] gives a bigger click area) -->
+      <div class="field">
+        <label for="name">Full name</label>
+        <input id="name" name="name" type="text" placeholder="Aditya Ranjan" required autocomplete="name">
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="you@gmail.com" required autocomplete="email">
+        <small class="hint">We never share your email.</small>
+        <small class="error">Please enter a valid email.</small>
+      </div>
+
+      <div class="field">
+        <label for="pass">Password (min 8)</label>
+        <input id="pass" name="pass" type="password" minlength="8" required autocomplete="new-password">
+        <small class="error">Use at least 8 characters.</small>
+      </div>
+
+      <div class="field">
+        <label for="city">City</label>
+        <select id="city" name="city" required>
+          <option value="">Choose...</option>
+          <option>Mumbai</option>
+          <option>Delhi</option>
+          <option>Bengaluru</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="msg">About you</label>
+        <textarea id="msg" name="msg" rows="3" placeholder="Optional"></textarea>
+      </div>
+
+      <!-- Custom radio group via accent-color + fieldset for grouping -->
+      <fieldset class="field">
+        <legend>Plan</legend>
+        <label class="inline"><input type="radio" name="plan" value="free" checked> Free</label>
+        <label class="inline"><input type="radio" name="plan" value="pro"> Pro</label>
+      </fieldset>
+
+      <label class="inline"><input type="checkbox" name="terms" required> I accept the terms</label>
+
+      <button class="submit" type="submit">Sign up</button>
+    </form>
+  </main>
+</body>
+</html>

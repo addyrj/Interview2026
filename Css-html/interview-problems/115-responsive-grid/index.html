@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>115. Responsive Grid Layout</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">Responsive Grid (resize the window)</header>
+
+  <!-- Part 1: auto-fill/auto-fit card grid, no media queries -->
+  <main class="wrap">
+    <h2>1. Product grid (auto-fit + minmax)</h2>
+    <section class="products">
+      <article class="product"><div class="img">Shoes</div><h3>Running Shoes</h3><p>Rs 1,999</p></article>
+      <article class="product"><div class="img">Watch</div><h3>Smart Watch</h3><p>Rs 3,499</p></article>
+      <article class="product"><div class="img">Bag</div><h3>Backpack</h3><p>Rs 899</p></article>
+      <article class="product"><div class="img">Phone</div><h3>Phone Case</h3><p>Rs 299</p></article>
+      <article class="product"><div class="img">Cap</div><h3>Sports Cap</h3><p>Rs 399</p></article>
+      <article class="product"><div class="img">Bottle</div><h3>Water Bottle</h3><p>Rs 499</p></article>
+    </section>
+
+    <!-- Part 2: page layout with named grid areas + media query -->
+    <h2>2. Page layout (grid-template-areas)</h2>
+    <div class="layout">
+      <header class="l-head">Header</header>
+      <nav class="l-nav">Sidebar</nav>
+      <section class="l-main">Main content</section>
+      <aside class="l-aside">Ads</aside>
+      <footer class="l-foot">Footer</footer>
+    </div>
+  </main>
+</body>
+</html>

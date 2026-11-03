@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Mode Toggle</title>
+  <!-- Tells the browser the page supports both schemes (native scrollbars/form controls adapt) -->
+  <meta name="color-scheme" content="light dark">
+
+  <!-- NO-FLASH SCRIPT: runs BEFORE first paint, so the wrong theme never flashes -->
+  <script>
+    (function () {
+      try {
+        // 1. saved choice ("light" | "dark") wins; 2. else follow the OS setting
+        var saved = localStorage.getItem('theme');
+        var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', saved || system);
+      } catch (e) {
+        // localStorage can be blocked (private mode) - fall back to light
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header with the toggle button -->
+  <header class="topbar">
+    <span class="logo">ShopKart</span>
+
+    <!-- aria-pressed tells screen readers whether dark mode is ON -->
+    <button id="theme-toggle" class="toggle" type="button"
+            aria-label="Toggle dark mode" aria-pressed="false">
+      <span class="toggle__thumb" aria-hidden="true"></span>
+    </button>
+  </header>
+
+  <main class="page">
+    <h1>Dark Mode Toggle</h1>
+    <p class="muted">Click the switch. Refresh the page: your choice is remembered.</p>
+
+    <!-- A sample card, all colours come from CSS variables -->
+    <article class="card">
+      <h2>Wireless Headphones</h2>
+      <p class="muted">Noise cancelling, 30 hour battery.</p>
+      <p class="price">&#8377;2,499</p>
+      <button class="btn" type="button">Add to cart</button>
+    </article>
+
+    <!-- A form control to show color-scheme styling -->
+    <label class="field">
+      Search
+      <input type="text" placeholder="Search products">
+    </label>
+  </main>
+
+  <script>
+    // Toggle logic
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+
+    // Keep button's aria-pressed in sync with the current theme
+    function sync() {
+      btn.setAttribute('aria-pressed', root.getAttribute('data-theme') === 'dark');
+    }
+
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);        // switches all CSS variables
+      try { localStorage.setItem('theme', next); } catch (e) {} // remember choice
+      sync();
+    });
+
+    // If user never chose manually, follow live OS changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+      var hasChoice = false;
+      try { hasChoice = !!localStorage.getItem('theme'); } catch (err) {}
+      if (!hasChoice) {
+        root.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        sync();
+      }
+    });
+
+    sync();
+  </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+body { margin: 0; font-family: system-ui, sans-serif; background: #f4f5f7; color: #222; }
+.wrap { max-width: 700px; margin: 0 auto; padding: 30px 20px 80px; text-align: center; }
+h2 { font-size: 1.05rem; margin-top: 50px; }
+.row { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin: 70px 0; }
+
+/* ---------- Pattern 1: tooltip from data-tip using ::after ---------- */
+.tip {
+  position: relative;            /* anchor for the absolute tooltip */
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: #1a73e8;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.tip:focus-visible { outline: 3px solid #fbbc04; outline-offset: 2px; }
+
+/* The bubble (::after) + the arrow (::before) share these basics */
+.tip::before, .tip::after {
+  position: absolute;
+  opacity: 0;                    /* hidden by default */
+  visibility: hidden;
+  pointer-events: none;          /* tooltip never steals the mouse */
+  transition: opacity .2s ease, transform .2s ease;
+  z-index: 10;
+}
+
+/* Bubble text comes from the HTML attribute */
+.tip::after {
+  content: attr(data-tip);
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #202124;
+  color: #fff;
+  font-size: .8rem;
+  white-space: nowrap;           /* keep tooltip on one line */
+}
+
+/* Arrow: border triangle (see topic 116) */
+.tip::before { content: ""; border: 6px solid transparent; }
+
+/* Show on hover AND keyboard focus */
+.tip:hover::before, .tip:hover::after,
+.tip:focus-visible::before, .tip:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ----- TOP (default) ----- */
+.tip::after  { bottom: calc(100% + 10px); left: 50%; transform: translate(-50%, 4px); }
+.tip::before { bottom: calc(100% - 2px);  left: 50%; transform: translate(-50%, 4px); border-top-color: #202124; }
+.tip:hover::after, .tip:hover::before,
+.tip:focus-visible::after, .tip:focus-visible::before { transform: translate(-50%, 0); }
+
+/* ----- BOTTOM ----- */
+.tip[data-pos="bottom"]::after  { top: calc(100% + 10px); bottom: auto; transform: translate(-50%, -4px); }
+.tip[data-pos="bottom"]::before { top: calc(100% - 2px);  bottom: auto; transform: translate(-50%, -4px); border-top-color: transparent; border-bottom-color: #202124; }
+.tip[data-pos="bottom"]:hover::after, .tip[data-pos="bottom"]:hover::before,
+.tip[data-pos="bottom"]:focus-visible::after, .tip[data-pos="bottom"]:focus-visible::before { transform: translate(-50%, 0); }
+
+/* ----- RIGHT ----- */
+.tip[data-pos="right"]::after  { left: calc(100% + 10px); bottom: auto; top: 50%; transform: translate(-4px, -50%); }
+.tip[data-pos="right"]::before { left: calc(100% - 2px);  bottom: auto; top: 50%; transform: translate(-4px, -50%); border-top-color: transparent; border-right-color: #202124; }
+.tip[data-pos="right"]:hover::after, .tip[data-pos="right"]:hover::before,
+.tip[data-pos="right"]:focus-visible::after, .tip[data-pos="right"]:focus-visible::before { transform: translate(0, -50%); }
+
+/* ----- LEFT ----- */
+.tip[data-pos="left"]::after  { right: calc(100% + 10px); left: auto; bottom: auto; top: 50%; transform: translate(4px, -50%); }
+.tip[data-pos="left"]::before { right: calc(100% - 2px);  left: auto; bottom: auto; top: 50%; transform: translate(4px, -50%); border-top-color: transparent; border-left-color: #202124; }
+.tip[data-pos="left"]:hover::after, .tip[data-pos="left"]:hover::before,
+.tip[data-pos="left"]:focus-visible::after, .tip[data-pos="left"]:focus-visible::before { transform: translate(0, -50%); }
+
+/* ---------- Pattern 2: accessible tooltip with a real element ---------- */
+.tip2 { position: relative; display: inline-block; }
+.icon-btn {
+  width: 32px; height: 32px;
+  border: 2px solid #1a73e8; border-radius: 50%;
+  background: #fff; color: #1a73e8;
+  font-weight: 700; font-style: italic; cursor: help;
+}
+.tip2__bubble {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #202124;
+  color: #fff;
+  font-size: .8rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .2s;
+}
+/* :hover on wrapper keeps the tooltip open while the pointer is over the bubble too (WCAG 1.4.13) */
+.tip2:hover .tip2__bubble,
+.tip2:focus-within .tip2__bubble { opacity: 1; visibility: visible; }
+
+/* Esc-dismiss needs JS; reduced motion: no transition */
+@media (prefers-reduced-motion: reduce) {
+  .tip::before, .tip::after, .tip2__bubble { transition: none; }
+}

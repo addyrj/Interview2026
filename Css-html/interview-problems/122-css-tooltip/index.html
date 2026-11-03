@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>122. CSS Tooltip</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <h1>CSS Tooltips</h1>
+    <p>Hover or Tab (keyboard focus) onto each button.</p>
+
+    <div class="row">
+      <!-- Pattern 1: attribute-based tooltip. Text lives in data-tip, no extra markup -->
+      <button class="tip" data-tip="Top tooltip" data-pos="top" type="button">Top</button>
+      <button class="tip" data-tip="Right tooltip" data-pos="right" type="button">Right</button>
+      <button class="tip" data-tip="Bottom tooltip" data-pos="bottom" type="button">Bottom</button>
+      <button class="tip" data-tip="Left tooltip" data-pos="left" type="button">Left</button>
+    </div>
+
+    <h2>Accessible version (real element + aria-describedby)</h2>
+    <div class="row">
+      <span class="tip2">
+        <button class="icon-btn" type="button" aria-describedby="tip-cart" aria-label="Cart info">i</button>
+        <!-- role="tooltip" element is linked to the button via aria-describedby -->
+        <span class="tip2__bubble" id="tip-cart" role="tooltip">Free delivery above Rs 499</span>
+      </span>
+    </div>
+  </main>
+</body>
+</html>
