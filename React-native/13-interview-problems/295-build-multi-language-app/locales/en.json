@@ -1,0 +1,8 @@
+{
+  "welcome": "Welcome to Zomato",
+  "items_count_one": "{{count}} item in cart",
+  "items_count_other": "{{count}} items in cart",
+  "hello_user": "Hello, {{name}}!",
+  "change_language": "Change language",
+  "order_now": "Order now"
+}

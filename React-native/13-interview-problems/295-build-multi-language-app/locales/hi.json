@@ -1,0 +1,8 @@
+{
+  "welcome": "Zomato में आपका स्वागत है",
+  "items_count_one": "कार्ट में {{count}} आइटम",
+  "items_count_other": "कार्ट में {{count}} आइटम",
+  "hello_user": "नमस्ते, {{name}}!",
+  "change_language": "भाषा बदलें",
+  "order_now": "अभी ऑर्डर करें"
+}

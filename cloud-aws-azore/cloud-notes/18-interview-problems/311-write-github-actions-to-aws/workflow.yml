@@ -1,0 +1,57 @@
+# Copy to .github/workflows/ci-cd.yml
+name: ci-cd
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm test
+
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production        # add required reviewers in repo settings
+    permissions:
+      id-token: write              # request the OIDC token
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::123456789012:role/gha-deploy
+          aws-region: ap-south-1
+
+      - run: aws sts get-caller-identity
+
+      - id: ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push
+        run: |
+          IMAGE=${{ steps.ecr.outputs.registry }}/node-api:${{ github.sha }}
+          docker build -t "$IMAGE" .
+          docker push "$IMAGE"
+
+      - name: Roll ECS service
+        run: |
+          aws ecs update-service --cluster prod --service node-api --force-new-deployment
+          aws ecs wait services-stable --cluster prod --services node-api

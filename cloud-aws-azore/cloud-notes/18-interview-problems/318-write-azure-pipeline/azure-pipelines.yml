@@ -1,0 +1,57 @@
+# Azure Pipelines: build/test Node.js, push Docker image to ACR, deploy to Container Apps.
+# Prereqs: service connections "acr-conn" (Docker Registry) and "azure-conn" (ARM, workload identity),
+# variable group or pipeline vars for ACR_NAME, RG, APP_NAME, and an environment "production" with approval.
+trigger:
+  branches:
+    include: [main]
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  imageRepo: myapp-api
+  tag: $(Build.SourceVersion)
+
+stages:
+  - stage: Build
+    jobs:
+      - job: BuildTest
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '20.x'
+          - script: |
+              npm ci
+              npm test --if-present
+            displayName: Install and test
+          - task: Docker@2
+            displayName: Build and push image
+            inputs:
+              command: buildAndPush
+              containerRegistry: acr-conn
+              repository: $(imageRepo)
+              Dockerfile: Dockerfile
+              tags: |
+                $(tag)
+
+  - stage: Deploy
+    dependsOn: Build
+    condition: succeeded()
+    jobs:
+      - deployment: DeployProd
+        environment: production        # add approvals/checks on this environment
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureCLI@2
+                  displayName: Update Container App image
+                  inputs:
+                    azureSubscription: azure-conn
+                    scriptType: bash
+                    scriptLocation: inlineScript
+                    inlineScript: |
+                      az containerapp update \
+                        --name "$(APP_NAME)" \
+                        --resource-group "$(RG)" \
+                        --image "$(ACR_NAME).azurecr.io/$(imageRepo):$(tag)"

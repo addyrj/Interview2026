@@ -1,0 +1,31 @@
+# Wave plan: each app gets a strategy (the 6 Rs), a wave, and a rollback.
+waves:
+  - wave: 0
+    name: foundation
+    work: [landing-zone, network, iam, logging, cost-tags]
+  - wave: 1
+    name: low-risk
+    apps:
+      - name: marketing-site
+        strategy: rehost           # lift and shift (static -> S3/CloudFront or Blob/CDN)
+        rollback: repoint-dns
+      - name: internal-wiki
+        strategy: repurchase       # move to SaaS
+        rollback: keep-old-running-2-weeks
+  - wave: 2
+    name: core
+    apps:
+      - name: orders-api
+        strategy: replatform       # VPS -> container on ECS/Container Apps, DB -> RDS/Azure PG
+        data: { tool: "AWS DMS / Azure DMS", mode: "full-load + CDC" }
+        cutover: { freeze_writes_minutes: 10, validate: [row-counts, checksum, smoke-tests] }
+        rollback: repoint-dns-to-vps (keep reverse replication until day 14)
+      - name: legacy-billing
+        strategy: retain           # revisit later
+  - wave: 3
+    name: modernize
+    apps:
+      - name: report-batch
+        strategy: refactor         # to serverless / queues
+      - name: old-ftp-gateway
+        strategy: retire
